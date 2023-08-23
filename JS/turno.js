@@ -1,5 +1,3 @@
-
-
 function diaDisp () {
     let dia 
     do {
@@ -60,5 +58,3 @@ if (paciente === "si"){
 }
 
 alert("Su turno fue agendado! Recibirá un mensaje confirmando su turno")
-
-
