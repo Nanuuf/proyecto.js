@@ -1,3 +1,4 @@
+//primera pre entrega copia por seguridad 
 function diaDisp () {
     let dia 
     do {
