@@ -1,24 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turnos</title>
+    <link rel="shortcut icon" href="images/faviconPM.svg" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
-<body>
+<body id="body" class="container-fluid">
+
+    <div class="inicio">
+        <nav class="navBoots row col-sm-12 col-md-12"> <!-- menu de navegacion-->
+            <ul > <!-- unorder list -->
+                <li>INICIO</li>
+                <li><a href="pages/about.html">SOBRE MI</a></li> <!-- list item -->
+                <li><a href="pages/sesiones.html">SESIONES</a></li>
+                <li><a href="pages/contacto.html">CONTACTO</a></li>
+                <li><a href="pages/pregFrec.html">PREGUNTAS FRECUENTES</a></li>
+            </ul>
+        </nav>
+        
+        <header class= "Header_Boots row col-sm-12 col-md-12"> <!--encabezado-->
+            <div class= "Logo_Boots col-sm-6 col-md-2">
+                <img src="images/icono.svg" alt="icono cristales" class="Icono_Boots">
+            </div>
+            <div class="Tamanio_Boots d-sm-none d-md-none d-lg-block col-lg-8 ">
+                <a href="index.html" >
+                    <img src="images/header-Giaza.svg" alt="nombre de la pagina" id="PosNombre_Boots" >
+                </a>
+            </div>
+            <div class="redes_Boots col-sm-6 col-md-2">
+                <div class="PositionInst_Boots">
+                    <a href="instagram.com" id="aInsta_Boots" >
+                        <img src="images/icons8-instagram-48.svg" alt="icon instagram" id="IconInst_Boots"> 
+                    </a>
+                </div>
+                <div class="PositionWsp_Boots">
+                    <a href="https://wa.me/+5492215051472">
+                        <img src="images/icon wsp.svg" alt="icon whatsapp" class="IconWsp_Boots">
+                    </a>
+                </div>
+                <div class="PositionTeleg_Boots">
+                    <a href="https://t.me/+5492215051472">
+                        <img src="images/icon telegram.svg" alt="telegram icon" class="IconTelg_Boots">
+                    </a>
+                </div>
+                
+            </div>
+            <nav class="nav container" id="nav">
+    
+                <ul class="nav__links">
+    
+                    <li class="nav__item">
+                        <a href="index.html" class="nav__link">INICIO</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="pages/about.html" class="nav__link">SOBRE MI</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="pages/sesiones.html" class="nav__link">SESIONES</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="pages/contacto.html" class="nav__link">CONTACTO</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="pages/pregFrec.html" class="nav__link">PREGUNTAS</a>
+                    </li>
+                    
+    
+                </ul>
+    
+                <a href="#nav" class="nav__hamburguer">
+                    <img src="images/icons8-menu.svg" class="nav__icon">
+                </a>
+    
+                <a href="#" class="nav__close">
+                    <img src="images/close.svg" class="nav__icon">
+                </a>
+    
+            </nav>
+        </header>
+    </div>
+
     <main>
         <h1>Turnos</h1>
         <p>acá podrás seleccionar el dia y horario que quieras para tu primer/próximo turno</p>
     </main>
-    <div>
-        <p>Nombre:</p>
-        <p>dia:</p>
-        <p>horario: </p>
-        <p>paciente?</p>
+    <div class="divPage" >
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Ingrese su nombre</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nahir Fernandez">
+        </div>
+        <h6>¿Ya se encuentra registrado? </h6>
+        <div id="checkedRegistro">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                Si
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                No
+                </label>
+            </div>
+        </div>
+
+        <div id="formularioRegistro">
+            <h2>Registro</h2>
+            <form>
+                <!-- Agrega aquí tus campos de registro -->
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Ingrese su nombre</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nahir Fernandez" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Ingrese su fecha de nacimiento</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="AAAA/MM/DD" required>
+                </div>
+                <select class="form-select form-select-sm" aria-label="Small select example">
+                    <option selected>selecciona la terapia</option>
+                    <option value="1">Tameana</option>
+                    <option value="2">Tinak Tanae</option>
+                </select>
+
+    
+                <!-- Otros campos de registro aquí -->
+    
+                <button type="button" class="btn btn-outline-secondary">Registrar</button>
+            </form>
+        </div>
+
+
+
+        <p>Elija día y horario para agendar la sesión</p>
+        <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>selecciona el dia</option>
+            <option value="1">Lunes</option>
+            <option value="2">Martes</option>
+            <option value="3">Miercoles</option>
+            <option value="4">Jueves</option>
+            <option value="5">Sabado</option>
+        </select>
+        <select class="form-select form-select-sm" aria-label="Small select example">
+            <option selected>selecciona el horario</option>
+            <option value="1">10.30</option>
+            <option value="2">12.00</option>
+            <option value="3">15.30</option>
+            <option value="4">16.00</option>
+            <option value="5">20.30</option>
+        </select>
     </div>
 
-    <footer></footer>
-    <script src="./JS/turnos.js" async></script>
+    <footer class="Footer_Boots row"> 
+        <!--pie de pagina-->
+        <div class="SobreFooter_Boots col-sm-12 col-md-6">
+            <a href="pages/about.html" class="link_Boots">SOBRE MI</a></li>
+            <a href="pages/sesiones.html" class="link_Boots">SESIONES</a></li>
+            <a href="pages/pregFrec.html" class="link_Boots">Q&A</a></li>
+        </div>
+        <div class="Sesiones_Boots col-sm-12 col-md-6">
+            <p>PATRICIAMO54@GMAIL.COM</p>
+            <p>2215051472</p>
+            <p>LA PLATA, BS.AS</p>
+        </div>
+        
+    </footer>
+    <div class="copyright_Boots row col-sm-12 col-md-12">
+        <p class="right_B">2023 All right reserved. Made by NahirF</p>
+    </div>
+    <script src="./JS/javasc/turnos.js" async></script>
 </body>
 </html>

@@ -161,42 +161,4 @@ h6 {
   font-weight: 350;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* BODY */
-.body {
-  background-color: white;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-p {
-  margin-bottom: 0;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-ul {
-  display: flex;
-  justify-content: space-evenly;
-  list-style-type: none;
-  margin-bottom: 0;
-  width: 100%;
-}
-ul li a {
-  color: white;
-}
-
-.container-fluid {
-  padding: 0;
-}
-
-/*# sourceMappingURL=estilos.css.map */
+/*# sourceMappingURL=page.css.map */

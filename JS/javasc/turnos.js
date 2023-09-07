@@ -184,3 +184,27 @@ if (esPaciente === "si"){
         console.log(`${propiedad}: ${nuevoPaciente[propiedad]}`);
     }
 }
+
+
+// Obtiene el checkbox y el formulario
+const checkNo = document.getElementById('flexRadioDefault2');
+const checkSi = document.getElementById('flexRadioDefault1');
+const formulario = document.getElementById('formularioRegistro');
+const body = document.body
+
+// Agrega un evento para mostrar/ocultar el formulario cuando se marque/desmarque el checkbox
+checkNo.addEventListener('change', function() {
+if (checkNo.checked) {
+    formulario.style.display = 'block';
+    body.style.height = 'auto'; 
+} else if (checkSi.checked){
+        formulario.style.display = 'none';
+        body.style.height = '100%'
+    }
+});
+
+checkSi.addEventListener('change', function() {
+    if (checkSi.checked) {
+        formulario.style.display = 'none';
+    }
+});

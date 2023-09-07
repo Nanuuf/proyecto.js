@@ -1,0 +1,163 @@
+$color_principal: #C77DFF;
+$color_secundario: #C859FF;
+
+.navBoots{
+    height: 46px;
+    background-color: $color_principal;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-size: 18px;
+    font-family: Inter;
+    font-weight: 200;
+    margin: 0;
+}
+
+.Header_Boots{ 
+    height: 130px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    background-color: $color_principal;
+}
+
+.Logo_Boots {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    align-content: center;
+    justify-content: flex-start;
+    width: auto;
+}
+.Icono_Boots {
+    width: 100px;
+    height: 100px;
+}
+
+.Tamanio_Boots{
+    height: 130px;
+    width: 592px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.redes_Boots{
+    width: 195px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#aInsta_Boots{
+    width: 10px;
+    display: inline-block;
+}
+.PositionInst_Boots{
+    width: 51px;
+    display: inline-block;
+    
+}
+
+#IconInst_Boots{
+    width: 35px;
+    height: 35px;
+}
+
+.PositionWsp_Boots{
+    width: 45px;
+}
+.IconWsp_Boots{
+    width: 30px;
+    height: 30px;
+}
+
+.IconTelg_Boots {
+    width: 42px;
+    height: 42px;
+}
+.PositionTeleg_Boots{
+    width: 45px;
+}
+
+.divPage{
+    height: 300px;
+}
+
+.form-check {
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+}
+#checkedRegistro{
+    display: inline-flex;
+    justify-content: center;
+    width: 135px;
+}
+
+h6{
+    display: inline-block;
+}
+
+.form-select{
+    width: 200px;
+    display: inline-flex;
+}
+
+.form-control{
+    width: 400px;
+}
+
+#formularioRegistro {
+    display: none;
+}
+
+
+/* FOOTER */
+.Footer_Boots{
+    background-color: $color_secundario;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    color: white;
+    line-height: 167%;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3.12px;
+
+}
+
+.SobreFooter_Boots{
+    display: flex;
+    flex-direction: column;
+    width: 199.27px;
+    height: 74px;
+    a{
+        color: white;
+        text-decoration: none;
+        display: block;
+        letter-spacing: 3.12px;
+    }
+}
+
+.Sesiones_Boots{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.copyright_Boots{
+    display: flex;
+    background-color: $color_secundario;
+    color: white;
+    justify-content: center;
+    margin: 0;
+    p{
+        width: auto;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 350;
+    }
+}
