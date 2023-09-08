@@ -93,8 +93,8 @@
     </main>
     <div class="divPage" >
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Ingrese su nombre</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nahir Fernandez">
+            <label for="nombrePaciente" class="form-label">Ingrese su nombre</label>
+            <input type="text" class="form-control" id="nombrePaciente" placeholder="Ej: Nahir Fernandez">
         </div>
         <h6>¿Ya se encuentra registrado? </h6>
         <div id="checkedRegistro">
@@ -112,47 +112,62 @@
             </div>
         </div>
 
+        <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmacionModalLabel">Confirmación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Paciente registrado con éxito.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="formularioRegistro">
             <h2>Registro</h2>
             <form>
-                <!-- Agrega aquí tus campos de registro -->
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Ingrese su nombre</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nahir Fernandez" required>
+                    <label for="nombre" class="form-label">Ingrese su nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nahir Fernandez" required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Ingrese su fecha de nacimiento</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="AAAA/MM/DD" required>
+                    <label for="fechaNacimiento" class="form-label">Ingrese su fecha de nacimiento</label>
+                    <input type="text" class="form-control" id="fechaNacimiento" placeholder="AAAA/MM/DD" required>
                 </div>
-                <select class="form-select form-select-sm" aria-label="Small select example">
+                <select class="form-select form-select-sm" id="sesion" aria-label="Small select example">
                     <option selected>selecciona la terapia</option>
-                    <option value="1">Tameana</option>
-                    <option value="2">Tinak Tanae</option>
+                    <option value="Tameana">Tameana</option>
+                    <option value="Tinak Tanae">Tinak Tanae</option>
                 </select>
 
-    
-                <!-- Otros campos de registro aquí -->
-    
-                <button type="button" class="btn btn-outline-secondary">Registrar</button>
+                <button type="button" class="btn btn-outline-secondary " data-bs-toggle="modal" data-bs-target="#confirmacionModal" onclick="registrarPaciente()" >Registrar</button>
             </form>
+
         </div>
+        
 
 
 
         <p>Elija día y horario para agendar la sesión</p>
-        <select class="form-select form-select-sm" aria-label="Small select example">
+        <select class="form-select form-select-sm" aria-label="Small select example" id="dia">
             <option selected>selecciona el dia</option>
-            <option value="1">Lunes</option>
-            <option value="2">Martes</option>
-            <option value="3">Miercoles</option>
-            <option value="4">Jueves</option>
-            <option value="5">Sabado</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miercoles">Miercoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Sabado">Sabado</option>
         </select>
-        <select class="form-select form-select-sm" aria-label="Small select example">
+        <select class="form-select form-select-sm" aria-label="Small select example" id="horario">
             <option selected>selecciona el horario</option>
             <option value="1">10.30</option>
             <option value="2">12.00</option>
@@ -160,7 +175,11 @@
             <option value="4">16.00</option>
             <option value="5">20.30</option>
         </select>
+        <button type="button" class="btn btn-secondary" id="reservarBtn">Reservar</button>
     </div>
+
+
+
 
     <footer class="Footer_Boots row"> 
         <!--pie de pagina-->

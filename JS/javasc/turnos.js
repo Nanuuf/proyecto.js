@@ -1,108 +1,97 @@
-class ControladorPacientes {
-    constructor() {
-        this.pacientes = [];
-        this.turnosOcupados = {};
-    }
-    agregarPaciente(paciente) {
-        this.pacientes.push(paciente);
-    }
-    buscarPaciente(nombre) {
-        return this.pacientes.find(paciente => paciente.nombreCompleto.toLowerCase() === nombre.toLowerCase());
+// Función para registrar al paciente
+function registrarPaciente() {
+    // Obtener los valores de los campos del formulario
+    var nombre = document.getElementById("nombre").value;
+    var email = document.getElementById("email").value;
+    var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    var terapia = document.getElementById("sesion").value;
 
-    }
-    pasarNombreMayuscula(paciente){
-        return {
-            ...paciente,
-            nombreCompleto: paciente.nombreCompleto.toUpperCase()
-        }
-    }
+    // Crear un objeto con la información del paciente
+    const paciente = {
+        nombre: nombre,
+        email: email,
+        fechaNacimiento: fechaNacimiento,
+        terapia: terapia
+    };
+
+    // Convertir el objeto en una cadena JSON
+    const pacienteJSON = JSON.stringify(paciente);
+
+    // Guardar la cadena JSON en el localStorage
+    localStorage.setItem("paciente", pacienteJSON);
+
+    // Mostrar el modal de confirmación
+    mostrarModal('Paciente registrado exitosamente.');
+
+    // Ocultar el formulario después de guardar la información
+    const formulario = document.getElementById('formularioRegistro'); 
+    formulario.style.display = 'none';
+
+}
+
+function mostrarModal(mensaje) {
+    const mensajeConfirmacion = document.getElementById('mensajeConfirmacion');
+    mensajeConfirmacion.textContent = mensaje;
+    const modal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+    modal.show();
+}
+
+
+// Evento click del botón "Reservar"
+document.getElementById('reservarBtn').addEventListener('click', function () {
+    const nombrePaciente = document.getElementById('nombre').value;
+    const dia = document.getElementById('dia').value;
+    const horario = document.getElementById('horario').value;
     
-    filtrarPacientesPorSesion(sesion) {
-        return this.pacientes.filter(paciente => paciente.sesion.toLowerCase() === sesion.toLowerCase());
+    if (verificarRegistro(nombrePaciente)) {
+        const mensaje = `¡Turno confirmado para ${nombrePaciente} el día ${dia} a las ${horario}!`;
+        document.getElementById('confirmacionTexto').textContent = mensaje;
+        mostrarModalConfirmacion();
+    } else {
+        const mensaje = `El nombre ${nombrePaciente} no está registrado. Por favor, regístrese.`;
+        document.getElementById('advertenciaTexto').textContent = mensaje;
+        mostrarModalAdvertencia();
     }
+});
 
 
-    //para calcular años del paciente, aun trabajando en esta funcion
-    calcularEdad(fechaNacimiento){
-        const ahora = new Date();
-        const nacimiento = new Date(fechaNacimiento);
-        let edad = ahora.getFullYear() - nacimiento.getFullYear();
+
+//CODIGO COMENTADO XQ NO ESTA TERMINADO
+// class ControladorPacientes {
+//     constructor() {
+//         this.pacientes = [];
+//         this.turnosOcupados = {};
+//     }
+//     agregarPaciente(paciente) {
+//         this.pacientes.push(paciente);
+//     }
+//     buscarPaciente(nombre) {
+//         return this.pacientes.find(paciente => paciente.nombreCompleto.toLowerCase() === nombre.toLowerCase());
+
+//     }
+//     pasarNombreMayuscula(paciente){
+//         return {
+//             ...paciente,
+//             nombreCompleto: paciente.nombreCompleto.toUpperCase()
+//         }
+//     }
+//     filtrarPacientesPorSesion(sesion) {
+//         return this.pacientes.filter(paciente => paciente.sesion.toLowerCase() === sesion.toLowerCase());
+//     }
+
+//     //para calcular años del paciente, aun trabajando en esta funcion
+//     calcularEdad(fechaNacimiento){
+//         const ahora = new Date();
+//         const nacimiento = new Date(fechaNacimiento);
+//         let edad = ahora.getFullYear() - nacimiento.getFullYear();
         
-        if (ahora.getMonth() < nacimiento.getMonth() || (ahora.getMonth() === nacimiento.getMonth() && ahora.getDate() < nacimiento.getDate()  )) {
-            edad--; //para completar la edad si aun no cumplio años
-        }
-        return edad; 
-    }
-    //aun trabajando en esta funcion
-    agendarTurno(dia, hora, minutos, paciente) {
-        const turnoKey = `${dia.toLowerCase()}_${hora}:${minutos}`;
-        
-        if (this.turnosOcupados[turnoKey]) {
-            return false; // El turno ya está ocupado
-        }
+//         if (ahora.getMonth() < nacimiento.getMonth() || (ahora.getMonth() === nacimiento.getMonth() && ahora.getDate() < nacimiento.getDate()  )) {
+//             edad--; //para completar la edad si aun no cumplio años
+//         }
+//         return edad; 
+//     }
 
-        this.turnosOcupados[turnoKey] = paciente; // Marcar el turno como ocupado
-        return true; // Turno agendado con éxito
-    }
-}
-//array para guardar pacientes
-const pacientes = new ControladorPacientes(); 
-const validarDia = (dia, diasHabiles, callback) => {
-    const diaLowerCase = dia.toLowerCase();
-    const esDiaValido = diasHabiles.includes(diaLowerCase);
-    callback(esDiaValido);
-}
 
-function validarHorario(hora, minutos) {
-    if (hora >= 7 && hora <= 22 && minutos>= 0 && minutos <= 59){
-        return true;
-    }
-    return false;
-}
-
-function solicitarDia (validarDiaCallback, horarioCallback) {
-    const diasHabiles  = ["lunes", "martes", "miercoles", "jueves", "sabado"]
-    let dia;
-    //verifico que el dia ingresado se encuentre en el array
-    do {
-        dia = prompt("Ingrese un día de la semana: ").toLowerCase();
-
-        if (diasHabiles.includes(dia)) {
-            alert(`Has elegido ${dia}`);
-            console.log(dia);
-            // Solicitar horario después de validar el día
-            solicitarHorario(dia, validarDiaCallback); 
-            break;
-        } else if (dia === "viernes") {
-            alert("Lo siento, no hay más turnos hoy :(");
-        } else if (dia === "domingo") {
-            alert("Lo siento, no atiendo los domingos.");
-        } else {
-            alert("Día incorrecto, por favor ingrese un día válido.");
-        }
-    } while (true);
-}
-//funciones de orden superior
-function solicitarHorario(dia, validarDiaCallback) {
-    do {
-        let hora = parseInt(prompt("Elija el horario entre las 07 y las 22: "));
-        let minutos = parseInt(prompt("Elija los minutos, entre 00 y 59: "))
-        if (validarHorario(hora, minutos)) {
-            alert("Su horario es: " + hora + ":" + minutos);
-
-            // Verificar disponibilidad del turno
-            if (pacientes.agendarTurno(dia, hora, minutos, nombre)) {
-                console.log(`Turno agendado para ${nombre} el ${dia} a las ${hora}:${minutos}`);
-            } else {
-                console.log(`El turno para ${dia} a las ${hora}:${minutos} ya está ocupado. Por favor, elija otro horario.`);
-                solicitarHorario(dia, validarDiaCallback); // Volver a solicitar horario
-            }
-            break;
-        } else {
-            alert("Por favor, elija un horario dentro del especificado.");
-        }
-    } while (true);
-}
 
 //manipulación de datos internos
 //funcion para que el usuario pueda cambiar info
@@ -132,79 +121,32 @@ function cancelarTurno(paciente){
 }
 
 
-let nombre = prompt("Ingrese su nombre ").toLowerCase();
-console.log(`nombre: ${nombre}`);
-
-let esPaciente = prompt( nombre + " ya esta registrado ?(si/no)").toLowerCase();
-console.log(`registrado: ${esPaciente}`);
-
-if (esPaciente === "si"){
-    const pacienteExistente = pacientes.buscarPaciente(nombre);
-    if (pacienteExistente) {
-        alert("Continuemos, elija día y horario para agendar la sesión");
-        //for...in para recorrer y mostrar por consola
-        console.log("Datos del paciente existente:");
-        for (const propiedad in pacienteExistente) {
-            console.log(`${propiedad}: ${pacienteExistente[propiedad]}`);
-        }
-        solicitarDia(validarDiaCallback, pacienteExistente);
-        alert("Su turno fue agendado! Recibirá un mensaje confirmando su turno") 
-    } else {
-        console.log(`El/la paciente ${nombre} no se encuentra registrado.`);
-    }
-} else if (esPaciente ==="no"){
-    alert("Bien, primero vamos a registrarte");
-    const nuevoPaciente = {
-        nombreCompleto: prompt("Nombre completo: "),
-        fechaNacimiento: new Date(prompt("Cual es su fecha de nacimiento(formato YYYY-MM-DD?)?")),
-        sesion: prompt("elija la sesión: (tameana/tinak) ")
-    };
-    // agrego al nuevo paciente en el array
-    pacientes.agregarPaciente(nuevoPaciente); 
-    const pacienteMayusculas = pacientes.pasarNombreMayuscula(nuevoPaciente);
-
-    const edadCompleta = pacientes.calcularEdad(nuevoPaciente.fechaNacimiento);
-
-    const pacientesTameana = pacientes.filtrarPacientesPorSesion("tameana");
-    console.log("Pacientes en la sesión Tameana:");
-    console.log(pacientesTameana);
-    
-    const pacientesTinak = pacientes.filtrarPacientesPorSesion("tinak");
-    console.log("Pacientes en la sesión Tinak:");
-    console.log(pacientesTinak);
-
-    alert("Genial " + nombre + " continuemos");
-    solicitarDia(validarDia, solicitarHorario);
-    alert("Su turno fue agendado! Recibirá un mensaje confirmando su turno") 
-
-
-
-    console.log("Detalles del paciente:");
-    for (const propiedad in nuevoPaciente) {
-        console.log(`${propiedad}: ${nuevoPaciente[propiedad]}`);
-    }
-}
-
-
-// Obtiene el checkbox y el formulario
+//mostrar formulario cuando selecciona NO
+// Obtiene el radio y el formulario
 const checkNo = document.getElementById('flexRadioDefault2');
 const checkSi = document.getElementById('flexRadioDefault1');
 const formulario = document.getElementById('formularioRegistro');
-const body = document.body
+const divPage = document.getElementById('divPage');
 
-// Agrega un evento para mostrar/ocultar el formulario cuando se marque/desmarque el checkbox
+
+
+// Agrega un evento para mostrar/ocultar el formulario y ajustar la altura de la página
 checkNo.addEventListener('change', function() {
 if (checkNo.checked) {
-    formulario.style.display = 'block';
-    body.style.height = 'auto'; 
-} else if (checkSi.checked){
-        formulario.style.display = 'none';
-        body.style.height = '100%'
-    }
+    formulario.style.display = 'block'; // Muestra el formulario
+     // Ajusta la altura de page automáticamente
+} else {
+    formulario.style.display = 'none'; // Oculta el formulario
+    // vuelve la altura de page al 100%
+}
 });
-
+//desaparece el formulario al apretar Si
 checkSi.addEventListener('change', function() {
     if (checkSi.checked) {
         formulario.style.display = 'none';
     }
 });
+
+
+
+
