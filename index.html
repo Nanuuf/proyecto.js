@@ -165,6 +165,56 @@
         <button type="button" class="btn btn-secondary" id="reservarBtn">Reservar</button>
     </div>
 
+    <!-- formulario para actualizar info del paciente -->
+    <div id="formularioMostrar" style="display: none;">
+        <h2>Información del Paciente</h2>
+        <form>
+            <div class="mb-3">
+                <label for="nombreMostrar" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreMostrar" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="emailMostrar" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailMostrar" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="fechaNacimientoMostrar" class="form-label">Fecha de Nacimiento</label>
+                <input type="text" class="form-control" id="fechaNacimientoMostrar" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="sesionMostrar" class="form-label">Terapia</label>
+                <input type="text" class="form-control" id="sesionMostrar" readonly>
+            </div>
+        </form>
+    </div>
+    
+    <div id="formularioActualizar" style="display: none;">
+        <h2>Actualizar Información</h2>
+        <form>
+            <div class="mb-3">
+                <label for="nombreActualizar" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreActualizar" placeholder="Nahir Fernandez" required>
+            </div>
+            <div class="mb-3">
+                <label for="emailActualizar" class="form-label">Email</label>
+                <input type="email" autocomplete="email" class="form-control" id="emailActualizar" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="fechaNacimientoActualizar" class="form-label">Fecha de Nacimiento</label>
+                <input type="text" class="form-control" id="fechaNacimientoActualizar" placeholder="AAAA/MM/DD" required>
+            </div>
+            <select class="form-select form-select-sm" id="sesionActualizar" aria-label="Small select example">
+                <option selected>Selecciona la terapia</option>
+                <option value="Tameana">Tameana</option>
+                <option value="Tinak Tanae">Tinak Tanae</option>
+            </select>
+            <button type="button" class="btn btn-outline-secondary" onclick="guardarCambios()">Guardar Cambios</button>
+        </form>
+    </div>
+    <button type="button" id="estilobtnInfo" class="btn btn-outline-secondary" onclick="mostrarFormularioActualizar()">Actualizar Información</button>
+
+
+
 
     <!-- Modal para confirmaciones -->
     

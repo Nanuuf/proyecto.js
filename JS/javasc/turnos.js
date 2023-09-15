@@ -1,10 +1,10 @@
 // Función para registrar al paciente
 function registrarPaciente() {
     // Obtener los valores de los campos del formulario
-    var nombre = document.getElementById("nombre").value;
-    var email = document.getElementById("email").value;
-    var fechaNacimiento = document.getElementById("fechaNacimiento").value;
-    var terapia = document.getElementById("sesion").value;
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    const terapia = document.getElementById("sesion").value;
 
     // Crear un objeto con la información del paciente
     const paciente = {
@@ -90,14 +90,10 @@ function mostrarTurnoSeleccionado(turno) {
 }
 
 
-// Evento click del botón "Reservar"
-document.getElementById('reservarBtn').addEventListener('click', function () {
+// Evento click del botón "Reserconst"
+document.getElementById('reserconstBtn').addEventListener('click', function () {
     compararNombre();
 });
-
-
-
-
 
 
 
@@ -126,3 +122,78 @@ checkSi.addEventListener('change', function() {
         formulario.style.display = 'none';
     }
 });
+
+// Función para cargar la información del paciente en el formulario de actualización
+//el paciente puede aactualizar su informacion
+function cargarInformacion() {
+    // Obtener la información actual del paciente desde el localStorage
+    const pacienteJSON = localStorage.getItem("paciente");
+
+    if (pacienteJSON) {
+        // Parsear el objeto JSON almacenado
+        const paciente = JSON.parse(pacienteJSON);
+
+        // Rellenar los campos del segundo formulario
+        document.getElementById("nombreActualizar").value = paciente.nombre;
+        document.getElementById("emailActualizar").value = paciente.email;
+        document.getElementById("fechaNacimientoActualizar").value = paciente.fechaNacimiento;
+        document.getElementById("sesionActualizar").value = paciente.terapia;
+    }
+}
+
+
+// Función para guardar los cambios en la información del paciente
+function guardarCambios() {
+    // Obtener los valores actualizados de los campos del segundo formulario
+    const nombre = document.getElementById("nombreActualizar").value;
+    const email = document.getElementById("emailActualizar").value;
+    const fechaNacimiento = document.getElementById("fechaNacimientoActualizar").value;
+    const terapia = document.getElementById("sesionActualizar").value;
+
+    // Crear un objeto con la información actualizada del paciente
+    const paciente = {
+        nombre: nombre,
+        email: email,
+        fechaNacimiento: fechaNacimiento,
+        terapia: terapia
+    };
+
+    // Convertir el objeto en una cadena JSON
+    const pacienteJSON = JSON.stringify(paciente);
+
+    // Actualizar la información en el localStorage
+    localStorage.setItem("paciente", pacienteJSON);
+
+    // Mostrar el modal de confirmación de actualización
+    mostrarModal('Información actualizada exitosamente.');
+}
+
+
+// Evento click del botón "Actualizar Información"
+document.getElementById('actualizarBtn').addEventListener('click', function () {
+    cargarInformacion(); // Cargar la información actual en el formulario de actualización
+    // Mostrar el formulario de actualización
+    document.getElementById('formularioRegistro').style.display = 'block';
+    document.getElementById('formularioMostrar').style.display = 'none';
+});
+
+// Evento click del botón "Guardar Cambios"
+document.getElementById('guardarCambiosBtn').addEventListener('click', function () {
+    guardarCambios(); // Guardar los cambios en la información del paciente
+    // Ocultar el formulario de actualización
+    document.getElementById('formularioRegistro').style.display = 'none';
+    document.getElementById('formularioMostrar').style.display = 'block';
+});
+function mostrarFormularioActualizar() {
+    // Ocultar el primer formulario de registro
+    document.getElementById('formularioRegistro').style.display = 'none';
+
+    // Mostrar el segundo formulario de actualización
+    document.getElementById('formularioActualizar').style.display = 'block';
+
+    // Cargar la información actual del paciente en el segundo formulario
+    cargarInformacion();
+}
+
+
+
