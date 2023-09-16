@@ -53,7 +53,7 @@ function compararNombre() {
             const mensaje = `¡Bienvenido de nuevo, ${nombreIngresado}!`;
             mostrarModal(mensaje);
 
-            // Lógica para obtener el turno seleccionado (debes implementar esta parte)
+            // Lógica para obtener el turno seleccionado 
             const diaSeleccionado = document.getElementById('dia').value;
             const horarioSeleccionado = selectHorario.options[selectHorario.selectedIndex].text;
             const turnoSeleccionado = `Día: ${diaSeleccionado}, Horario: ${horarioSeleccionado}`;
@@ -82,21 +82,6 @@ function mostrarModalError(mensaje) {
     modal.show();
 }
 
-function mostrarTurnoSeleccionado(turno) {
-    const mensajeTurno = document.getElementById('mensajeTurno');
-    mensajeTurno.textContent = turno;
-    const modal = new bootstrap.Modal(document.getElementById('turnoModal'));
-    modal.show();
-}
-
-
-// Evento click del botón "Reserconst"
-document.getElementById('reserconstBtn').addEventListener('click', function () {
-    compararNombre();
-});
-
-
-
 //mostrar formulario cuando selecciona NO
 // Obtiene el radio y el formulario
 const checkNo = document.getElementById('flexRadioDefault2');
@@ -123,6 +108,20 @@ checkSi.addEventListener('change', function() {
     }
 });
 
+function mostrarTurnoSeleccionado(turno) {
+    const mensajeTurno = document.getElementById('mensajeTurno');
+    mensajeTurno.textContent = turno;
+    const modal = new bootstrap.Modal(document.getElementById('turnoModal'));
+    modal.show();
+}
+
+
+
+// Evento click del botón "Reserconst"
+document.getElementById('reservarBtn').addEventListener('click', function () {
+    compararNombre();
+});
+
 // Función para cargar la información del paciente en el formulario de actualización
 //el paciente puede aactualizar su informacion
 function cargarInformacion() {
@@ -140,6 +139,31 @@ function cargarInformacion() {
         document.getElementById("sesionActualizar").value = paciente.terapia;
     }
 }
+
+
+// Evento click del botón "Actualizar Información"
+document.getElementById('actualizarBtn').addEventListener('click', function () {
+    cargarInformacion(); // Cargar la información actual en el formulario de actualización
+    // Mostrar el formulario de actualización
+    document.getElementById('formularioActualizar').style.display = 'block';
+    document.getElementById('formularioMostrar').style.display = 'none';
+});
+function mostrarFormularioActualizar() {
+    // Mostrar el segundo formulario de actualización
+    document.getElementById('formularioActualizar').style.display = 'block';
+
+    // Cargar la información actual del paciente en el segundo formulario
+    cargarInformacion();
+}
+// Evento click del botón "Guardar Cambios"
+document.getElementById('guardarCambiosBtn').addEventListener('click', function () {
+    guardarCambios(); // Guardar los cambios en la información del paciente
+    // Ocultar el formulario de actualización
+    document.getElementById('formularioActualizar').style.display = 'none';
+    // Mostrar el modal de confirmación de actualización
+    const mensaje = `Información actualizada exitosamente.`;
+    mostrarModal(mensaje);
+});
 
 
 // Función para guardar los cambios en la información del paciente
@@ -164,36 +188,7 @@ function guardarCambios() {
     // Actualizar la información en el localStorage
     localStorage.setItem("paciente", pacienteJSON);
 
-    // Mostrar el modal de confirmación de actualización
-    mostrarModal('Información actualizada exitosamente.');
+    
+
 }
-
-
-// Evento click del botón "Actualizar Información"
-document.getElementById('actualizarBtn').addEventListener('click', function () {
-    cargarInformacion(); // Cargar la información actual en el formulario de actualización
-    // Mostrar el formulario de actualización
-    document.getElementById('formularioRegistro').style.display = 'block';
-    document.getElementById('formularioMostrar').style.display = 'none';
-});
-
-// Evento click del botón "Guardar Cambios"
-document.getElementById('guardarCambiosBtn').addEventListener('click', function () {
-    guardarCambios(); // Guardar los cambios en la información del paciente
-    // Ocultar el formulario de actualización
-    document.getElementById('formularioRegistro').style.display = 'none';
-    document.getElementById('formularioMostrar').style.display = 'block';
-});
-function mostrarFormularioActualizar() {
-    // Ocultar el primer formulario de registro
-    document.getElementById('formularioRegistro').style.display = 'none';
-
-    // Mostrar el segundo formulario de actualización
-    document.getElementById('formularioActualizar').style.display = 'block';
-
-    // Cargar la información actual del paciente en el segundo formulario
-    cargarInformacion();
-}
-
-
 
