@@ -110,6 +110,32 @@ h6 {
   display: none;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  height: 120px;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "DM Serif Text", serif;
+}
+
+.divPage {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+#secAct {
+  display: grid;
+  justify-content: center;
+}
+
 /* FOOTER */
 .Footer_Boots {
   background-color: #C859FF;
