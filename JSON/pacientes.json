@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "email": "nanuferchu02@gmail.com",
+        "fechaNacimiento": "2002/04/22",
+        "nombre": "nahir fernandez",
+        "terapia": "Tinak Tanae"
+    },
+    {
+        "id": 2,
+        "email": "patrigm@gmail.com",
+        "fechaNacimiento": "1978/10/15",
+        "nombre": "patricia munos",
+        "terapia": "Tinak Tanae"
+    },
+    {
+        "id": 3,
+        "email": "joelf@gmail.com",
+        "fechaNacimiento": "2001/05/21",
+        "nombre": "joel fernandez",
+        "terapia": "Tameana"
+    },
+    {
+        "id": 4,
+        "email": "maxiMo@gmail.com",
+        "fechaNacimiento": "2008/08/22",
+        "nombre": "maximo fernandez",
+        "terapia": "Tameana"
+    },
+    {
+        "id": 5,
+        "email": "tomasFer@gmail.com",
+        "fechaNacimiento": "2012/07/22",
+        "nombre": "tomas fernandez",
+        "terapia": "Tameana"
+    },
+    {
+        "id": 6,
+        "email": "kodafer@gmail.com",
+        "fechaNacimiento": "2019/09/18",
+        "nombre": "koda fernandez",
+        "terapia": "Tinak Tanae"
+    }
+]

@@ -124,16 +124,19 @@
             <h2>Registro</h2>
             <form>
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Ingrese su nombre</label>
+                    <label for="nombre" class="form-label">Ingrese su nombre y apellido</label>
                     <input type="text" class="form-control" id="nombre" placeholder="Nahir Fernandez" required>
+                    <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" autocomplete="email" class="form-control" id="email" placeholder="name@example.com" required>
+                    <div class="invalid-feedback">Por favor, ingrese su mail.</div>
                 </div>
                 <div class="mb-3">
                     <label for="fechaNacimiento" class="form-label">Ingrese su fecha de nacimiento</label>
                     <input type="text" class="form-control" id="fechaNacimiento" placeholder="AAAA/MM/DD" required>
+                    <div class="invalid-feedback">Por favor, ingrese su fecha de nacimiento.</div>
                 </div>
                 <select class="form-select form-select-sm" id="sesion" aria-label="Small select example">
                     <option selected>selecciona la terapia</option>
@@ -141,15 +144,16 @@
                     <option value="Tinak Tanae">Tinak Tanae</option>
                 </select>
 
-                <button type="button" class="btn btn-outline-secondary "  onclick="registrarPaciente()" >Registrar</button>
+                <button type="button" id="SAConfirmacion" class="btn btn-outline-secondary "  onclick="registrarPaciente()" >Registrar</button>
             </form>
 
         </div>
 
         
         <div class="mb-3">
-            <label for="nombrePaciente" class="form-label">Ingrese su nombre</label>
-            <input type="text" class="form-control" id="nombrePaciente" placeholder="Ej: Nahir Fernandez">
+            <label for="nombrePaciente" class="form-label">Compruebe si está registrado </label>
+            <input type="text" class="form-control" id="nombrePaciente" placeholder="Ingrese su nombre y apellido ">
+            <button type="button" class="btn" id="ComprNombre">Comprobar</button>
         </div>
 
 
@@ -173,8 +177,9 @@
                 <option value="5">20.30</option>
             </select>
         </div>
-        <button type="button" class="btn btn-secondary" id="reservarBtn">Reservar</button>
+        <button type="button" class="btn btn-secondary" id="reservarBtn" disabled>Reservar</button>
     </div>
+
     <section id="secAct">
 
         <!-- formulario para actualizar info del paciente -->
@@ -223,64 +228,11 @@
                 <button type="button" id="guardarCambiosBtn" class="btn btn-outline-secondary" onclick="guardarCambios()">Guardar Cambios</button>
             </form>
         </div>
-        <button type="button" id="actualizarBtn" class="btn btn-outline-secondary" onclick="mostrarFormularioActualizar()">Actualizar Información</button>
-    </section>
-
-
-
-    <!-- Modal para confirmaciones -->
-    
-    <div class="modal" tabindex="-1" id="confirmacionModal"  aria-labelledby="confirmacionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"id="confirmacionModalLabel">Confirmación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="mensajeConfirmacion"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
+        <div id="posicionBtns">
+            <button type="button" id="actualizarBtn" class="btn btn-outline-secondary" onclick="mostrarFormularioActualizar()">Actualizar Información</button>
+            <button id="eliminarDatosBtn" class="btn btn-outline-secondary" disabled>Eliminar Datos</button>
         </div>
-    </div>
-    <!-- Modal para errores -->
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="mensajeError"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para mostrar el turno seleccionado -->
-    <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="turnoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="turnoModalLabel">Turno Seleccionado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="mensajeTurno"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
 
 
 
@@ -306,7 +258,6 @@
     
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="./JS/javasc/turnos.js" async></script>
+    <script src="./JS/turnos.js" async></script>
 </body>
 </html>

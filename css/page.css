@@ -131,6 +131,12 @@ h1 {
   align-content: center;
 }
 
+#ComprNombre {
+  color: #fff;
+  background-color: #d75cdf;
+  border-color: #c741c2;
+}
+
 #secAct {
   display: grid;
   justify-content: center;
