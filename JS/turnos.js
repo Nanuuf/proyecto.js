@@ -101,7 +101,7 @@ function compararNombre() {
     // parsea el objeto JSON almacenado
     const paciente = JSON.parse(pacientelS);
     //uso localstorage tmb para comparar
-    fetch('../JSON/pacientes.json')
+    fetch('./JSON/pacientes.json')
     .then(response => response.json())
     .then(data => {
         // Busqueda el paciente en los pacientes ya cargados
@@ -219,7 +219,7 @@ function cargarInformacion() {
     // Parsea el objeto JSON almacenado
     const paciente = JSON.parse(pacientelS);
     //uso localstorage tmb para comparar
-    fetch('../JSON/pacientes.json')
+    fetch('./JSON/pacientes.json')
     .then(response => response.json())
     .then(data => {
         // Buscar el paciente en los pacientes ya cargados
@@ -243,6 +243,7 @@ function cargarInformacion() {
             icon: 'error',
             text:'ocurrio un error al cargar la informacion'
         })
+        document.getElementById('formularioActualizar').style.display = 'none';
     })
 
     
@@ -303,7 +304,7 @@ function guardarCambios() {
     const pacienteLocal = JSON.parse(pacientelS);
 
     //actualizo info en pacientes.json
-    fetch('../JSON/pacientes.json')
+    fetch('./JSON/pacientes.json')
         .then(response => response.json())
         .then(data => {
             //findIndex metodo de array
